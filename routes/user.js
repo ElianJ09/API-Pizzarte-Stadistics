@@ -1,29 +1,64 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const user = express.Router();
 const db = require('../config/firebaseConection');
+const user = express.Router();
 
-user.post("/signin", async (req, res, next) => {
-    const { user_name, user_mail, user_password } = req.body;
+const secret = process.env.JWT_SECRET;
+
+// Ruta para el login de usuarios
+user.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
     try {
-        const datosSnapshot = await db.collection('tu_coleccion').get();
-        const datos = datosSnapshot.docs.map(doc => doc.data());
-        res.json(datos);
-      } catch (error) {
-        res.status(500).json({ error: error.message });
+
+        if(email.empty || password.empty){
+            return res.status(401).json({
+                code: 401,
+                message: "Exist blank spaces!"
+            })
+        }
+        // Busca el usuario en la colección de usuarios en Firestore
+        const userSnapshot = await db.collection('users').where('email', '==', email).get();
+
+        if (userSnapshot.empty) {
+            return res.status(401).json({
+                code: 401,
+                message: 'Credentials not found!'
+            });
+        }
+
+        let user;
+        userSnapshot.forEach(doc => {
+            user = doc.data();
+            user.id = doc.id;
+        });
+
+        // Compara la contraseña
+        if (user.password !== password) {
+            return res.status(401).json({
+                code: 401,
+                message: 'Invalid Credentials'
+            });
+        }
+
+        // Crea un token JWT
+        const token = jwt.sign({ 
+            id: user.id, 
+            email: user.email 
+        }, "debugkey");
+
+        res.status(200).json({
+            code: 200,
+            message: 'Login sucessfully!',
+            token: token
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            code: 500,
+            message: 'Server error'
+        });
     }
-});
-
-user.post("/login", async (req, res, next) =>{
-    const {user_mail, user_password} = req.body;
-
-});
-
-user.get("/", async (req, res, next) =>{
-    const query = "SELECT * FROM user"
-
-    return res.status(200).json({code: 200, message: selectedRows});
 });
 
 module.exports = user;

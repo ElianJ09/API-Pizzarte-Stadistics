@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffffaa; /* Cambiado a blanco */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.topbar {
+    width: 100%;
+    background-color: #ff7043; /* Naranja */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Agregado margen inferior */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.logout-btn {
+    background-color: #388e3c; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 20px;
+}
+
+.logout-btn:hover {
+    background-color: #2e7d32;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+
+.section {
+    flex: 1 1 calc(50% - 40px); /* Ajusta las secciones a la mitad del contenedor menos el gap */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 300px; /* Ancho mínimo para asegurar que se vea bien en pantallas pequeñas */
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #ffa726; /* Amarillo Naranja */
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+#caloriasPromedio,
+#pizzaMasVendidaTexto,
+#ingredientesMasVendidoTexto {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ffa726; /* Amarillo Naranja */
+}
+
+@media (max-width: 768px) {
+    .section {
+        flex: 1 1 100%; /* Ajusta las secciones a ocupar el 100% del ancho en pantallas pequeñas */
+    }
+}

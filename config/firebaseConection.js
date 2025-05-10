@@ -1,14 +1,10 @@
-const firebase = require('firebase/app');
-require('firebase/firestore');
+const admin = require('firebase-admin');
+const serviceAccount = require('./credentials.json');
 
-const firebaseConfig = {
-  apiKey: 'Key',
-  authDomain: 'TU_DOMINIO.firebaseapp.com',
-  projectId: 'TU_PROJECT_ID',
-};
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
 
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
+const db = admin.firestore();
 
 module.exports = db;

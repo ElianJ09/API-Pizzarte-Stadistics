@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Análisis de Pizzarte</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo-container">
+            <img src="img/logoPizzarte.png" alt="Logo de la Empresa" class="logo">
+        </div>
+        <button class="logout-btn">Log out</button>
+    </div>
+    <div class="container">
+        <div class="section" id="section-ingredientes">
+            <h2>Ingredientes Más Usados</h2>
+            <canvas id="ingredientesChart"></canvas>
+        </div>
+        <div class="section" id="section-calorias">
+            <h2>Calorías Totales por Día</h2>
+            <canvas id="caloriasChart"></canvas>
+            <div id="caloriasPromedio"></div>
+        </div>
+        <div class="section" id="section-prediccion-ingredientes">
+            <h2>Predicción de Ingredientes Más Vendidos</h2>
+            <canvas id="ingredientesPrediccionChart"></canvas>
+            <div id="ingredientesMasVendidoTexto"></div>
+        </div>
+        <div class="section" id="section-pizzas">
+            <h2>Pizzas Más Vendidas</h2>
+            <canvas id="pizzasChart"></canvas>
+            <div id="pizzaMasVendidaTexto"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
